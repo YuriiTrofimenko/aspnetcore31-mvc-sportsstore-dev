@@ -28,7 +28,10 @@ namespace SportsStore {
                 opts.UseSqlServer (
                     Configuration["ConnectionStrings:SportsStoreConnection"]);
             });
+            // обеспечение внедрения зависимостей через конструктор всем контроллерам
+            // и службам, у которых в конструкторах есть соответвующие аргументы
             services.AddScoped<IStoreRepository, EFStoreRepository> ();
+            services.AddScoped<IOrderRepository, EFOrderRepository>();
             // активация дополнительного мини-каркаса работы с серверными страницами
             services.AddRazorPages();
             // активация работы с http-сеансами
